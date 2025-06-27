@@ -84,7 +84,11 @@ export class UsersService {
     }
 
     if (await bcrypt.compare(user.password, dbUser.password)) {
-      const payload = { email: dbUser.email, name: dbUser.name };
+      const payload = {
+        email: dbUser.email,
+        name: dbUser.name,
+        role: dbUser.role,
+      };
       console.log('🚀 ~ UsersService ~ login ~ payload:', payload);
       return {
         access_token: this.jwtService.sign(payload),
